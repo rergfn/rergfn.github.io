@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="container content">
+    {{- range (where .Site.RegularPages "Section" "posts").GroupByDate "2006" -}}
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">{{ .Key }}</div>
+        </div>
+        <div class="section-list">
+            {{- range .Pages -}}
+            <a href="{{ .Permalink }}">
+                <div class="section-item">
+                    <div class="section-item-icon">{{- partial "icons/post.html" -}}</div>
+                    <div class="section-item-title">{{ .Title }}</div>
+                    <div class="section-item-date">{{ .Date.Format "01-02" }}</div>
+                </div>
+            </a>
+            {{- end -}}
+        </div>
+    </div>
+    {{- end -}}
+</div>
+{{- partial "footer.html" . -}}
+{{ end }}

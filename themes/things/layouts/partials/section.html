@@ -1,0 +1,25 @@
+{{- if gt .RegularPagesRecursive 0 -}}
+<div class="section">
+    {{- if gt .RegularPages 0 -}}
+    <div class="section-header">
+        <div class="section-title">{{ .Title }}</div>
+    </div>
+    <div class="section-list">
+        {{- range .RegularPages.ByWeight -}}
+        <a href="{{ .Permalink }}">
+            <div class="section-item">
+                <div class="section-item-icon">{{- partial "icons/post.html" -}}</div>
+                <div class="section-item-title">{{ .Title }}</div>
+            </div>
+        </a>
+        {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- range .Pages.ByWeight -}}
+    {{- if .IsSection -}}
+    {{- partial "section.html" .Page -}}
+    {{- end -}}
+    {{- end -}}
+</div>
+{{- end -}}
